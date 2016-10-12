@@ -1,6 +1,6 @@
 package desert.configs;
 
-import desert.services.MySQLUserDetailsService;
+import desert.services.impl.MySQLUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,6 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .authorizeRequests()
                     .antMatchers("/", "/home").permitAll()
                     .anyRequest().authenticated()

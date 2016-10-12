@@ -16,8 +16,7 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @JsonIgnore
-    @OneToOne( mappedBy = "profile" )
+    @OneToOne( mappedBy = "profile", fetch = FetchType.LAZY )
     private User user;
 
     @Column(name = "first_name")

@@ -3,10 +3,12 @@ package desert.controllers;
 /**
  * Created by Dim Mesh on 02.10.2016.  11:29
  */
-import desert.entities.User;
 import desert.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping(value = "/users")
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 
 public class UsersController {
@@ -25,28 +27,22 @@ public class UsersController {
     UsersService usersService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<User> getUsers()
+    public List<UserDto> getUsers()
     {
-        List<User> result = new ArrayList<>();
-        usersService.findAll().forEach(result::add);
+        List<UserDto> result = new ArrayList<>();
+        usersService.findAll().forEach(user -> {
+            result.add(new UserDto(user));
+        });
         return result;
     }
     @RequestMapping(method = RequestMethod.POST)
-    public User addUser(String username,
-                        String password,
-                        String firstName,
-                        String lastName,
-                        String password_confirm)
+    public ResponseEntity<UserDto> update(@RequestBody UserDto user)
     {
         //no empty fields allowed
-
-        if (username.isEmpty() || password.isEmpty() || password_confirm.isEmpty())
-            return null;
-        //passwords should match
-        if (!password.equals(password_confirm))
-            return null;
-
-        return usersService.addGuest(new User(username, password),firstName,lastName);
+        if(user != null){
+            user.getName();
+        }
+        return new ResponseEntity<UserDto>(user, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/add",method = RequestMethod.GET)

@@ -1,4 +1,4 @@
-package desert.services;
+package desert.services.impl;
 
 /**
  * Created by Dim Mesh on 29.09.2016.  21:57
