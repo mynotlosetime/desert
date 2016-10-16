@@ -9,8 +9,8 @@ import javax.persistence.*;
  * Created by Dim Mesh on 04.10.2016.  21:00
  */
 @Entity
-@Table(name = "profiles")
-public class Profile {
+@Table(name = "accounts")
+public class AccountEmployee implements Account{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,9 +25,9 @@ public class Profile {
     @Column(name = "last_name")
     private String lastName;
 
-    public Profile(){}
+    public AccountEmployee(){}
 
-    public Profile( String firstName, String lastName) {
+    public AccountEmployee(String firstName, String lastName) {
         this.lastName = lastName;
         this.firstName = firstName;
     }

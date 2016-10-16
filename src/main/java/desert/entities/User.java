@@ -3,8 +3,6 @@ package desert.entities;
 /**
  * Created by Dim Mesh on 29.09.2016.  22:03
  */
-import com.fasterxml.jackson.annotation.JsonInclude;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -23,8 +21,8 @@ public class User {
     private String password;
 
     @OneToOne
-    @JoinColumn(name = "profile_id")
-    private Profile profile;
+    @JoinColumn(name = "account_id")
+    private AccountEmployee accountEmployee;
 
     @ManyToMany
     @JoinTable(name = "users_roles",
@@ -80,11 +78,11 @@ public class User {
     }
 
 
-    public Profile getProfile() {
-        return profile;
+    public AccountEmployee getAccountEmployee() {
+        return accountEmployee;
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
+    public void setAccountEmployee(AccountEmployee accountEmployee) {
+        this.accountEmployee = accountEmployee;
     }
 }

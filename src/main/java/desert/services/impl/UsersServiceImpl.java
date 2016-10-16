@@ -1,8 +1,8 @@
 package desert.services.impl;
 
-import desert.entities.Profile;
+import desert.entities.AccountEmployee;
 import desert.entities.User;
-import desert.entities.repositories.ProfilesRepository;
+import desert.entities.repositories.AccountsRepository;
 import desert.entities.repositories.UsersRepository;
 import desert.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +18,16 @@ public class UsersServiceImpl implements UsersService {
     UsersRepository users;
 
     @Autowired
-    ProfilesRepository profiles;
+    AccountsRepository accounts;
 
     @Transactional
     public User addGuest(User user,String firstName, String lastName){
 
-        Profile profile = new Profile(firstName,lastName);
-        profile.setUser(user);
-        profiles.save(profile);
+        AccountEmployee accountEmployee = new AccountEmployee(firstName,lastName);
+        accountEmployee.setUser(user);
+        accounts.save(accountEmployee);
 
-        user.setProfile(profile);
+        user.setAccountEmployee(accountEmployee);
         users.save(user);
 
         return user;

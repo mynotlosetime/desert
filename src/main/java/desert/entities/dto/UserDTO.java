@@ -14,15 +14,15 @@ import java.io.Serializable;
 public class UserDto implements Serializable {
     private String name;
     private String password;
-    private ProfileDto profile;
+    private AccountDto account;
 
     public UserDto(){}
 
     public UserDto(User user){
         this.name = user.getUsername();
         this.password = user.getPassword();
-        if(user.getProfile() != null){
-            this.profile = new ProfileDto(user.getProfile());
+        if(user.getAccountEmployee() != null){
+            this.account = new AccountDto(user.getAccountEmployee());
         }
     }
     public String getPassword() {
@@ -42,11 +42,11 @@ public class UserDto implements Serializable {
     }
 
 
-    public ProfileDto getProfile() {
-        return profile;
+    public AccountDto getAccount() {
+        return account;
     }
 
-    public void setProfile(ProfileDto profile) {
-        this.profile = profile;
+    public void setAccount(AccountDto account) {
+        this.account = account;
     }
 }

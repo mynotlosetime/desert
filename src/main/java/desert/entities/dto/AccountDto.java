@@ -1,7 +1,7 @@
 package desert.entities.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import desert.entities.Profile;
+import desert.entities.AccountEmployee;
 
 import java.io.Serializable;
 
@@ -11,15 +11,15 @@ import java.io.Serializable;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
-public class ProfileDto implements Serializable{
+public class AccountDto implements Serializable{
     private String firstName;
     private String lastName;
 
-    public ProfileDto(){}
+    public AccountDto(){}
 
-    public ProfileDto(Profile profile){
-        this.firstName = profile.getFirstName();
-        this.lastName = profile.getLastName();
+    public AccountDto(AccountEmployee accountEmployee){
+        this.firstName = accountEmployee.getFirstName();
+        this.lastName = accountEmployee.getLastName();
     }
 
     public String getFirstName() {

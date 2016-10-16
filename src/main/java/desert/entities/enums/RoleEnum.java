@@ -5,10 +5,10 @@ package desert.entities.enums;
  */
 public enum RoleEnum {
     ANONYMOUS,
-    USER,
+    EMPLOYEE,
+    COMPANY,
     ADMIN;
 
     RoleEnum() {
     }
-
 }

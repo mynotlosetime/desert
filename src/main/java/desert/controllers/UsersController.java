@@ -3,6 +3,7 @@ package desert.controllers;
 /**
  * Created by Dim Mesh on 02.10.2016.  11:29
  */
+import desert.entities.dto.UserDto;
 import desert.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
