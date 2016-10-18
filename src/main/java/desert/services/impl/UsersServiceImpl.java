@@ -10,6 +10,7 @@ import desert.entities.repositories.UsersRep;
 import desert.services.AccountsService;
 import desert.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,27 +25,26 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
     AccountsService accountsService;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @Transactional
     public User addGuest(UserDto userDto){
-        User user = new User(userDto.getName(), userDto.getPassword());
+        User user = new User(userDto.getName(), passwordEncoder.encode(userDto.getPassword()));
         AccountDto accountDto = userDto.getAccount();
         if(accountDto != null) {
             if (accountDto.getClass() == CompanyAccountDto.class) {
                 CompanyAccount account = accountsService.createCompanyAccount(user, (CompanyAccountDto) accountDto);
                 user.setCompanyAccount(account);
+                user.setRole(RoleEnum.ROLE_COMPANY);
             }
             else if (accountDto.getClass() == EmployeeAccountDto.class) {
                 EmployeeAccount account = accountsService.createEmployeeAccount(user, (EmployeeAccountDto) accountDto);
                 user.setEmployeeAccount(account);
+                user.setRole(RoleEnum.ROLE_EMPLOYEE);
             }
         }
-
-        /*Role role = rolesRep.findOne((long) RoleEnum.EMPLOYEE.ordinal());
-        user.addRole(role);*/
-
-        user.setRole(RoleEnum.ROLE_ADMIN);
         usersRep.save(user);
-
         return user;
     }
 
