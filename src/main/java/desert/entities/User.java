@@ -4,8 +4,9 @@ package desert.entities;
  * Created by Dim Mesh on 29.09.2016.  22:03
  */
 
+import desert.entities.enums.RoleEnum;
+
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name="users")
@@ -21,14 +22,16 @@ public class User {
     private String password;
 
     @OneToOne
-    @JoinColumn(name = "account_id")
-    private AccountEmployee accountEmployee;
+    @JoinColumn(name = "employee_account_id")
+    private EmployeeAccount employeeAccount;
 
-    @ManyToMany
-    @JoinTable(name = "users_roles",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    @OneToOne
+    @JoinColumn(name = "company_account_id")
+    private CompanyAccount companyAccount;
+
+    @Column(name = "role")
+    @Enumerated(EnumType.ORDINAL)
+    private RoleEnum role;
 
     protected User(){}
     public User(String name, String pass) {
@@ -39,14 +42,14 @@ public class User {
 
     /*========== For roles wire ===============*/
 
-    public Set<Role> getRoles() {
-        return roles;
+
+    public RoleEnum getRole() {
+        return role;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRole(RoleEnum role) {
+        this.role = role;
     }
-
 
     /*=========== Self methods =================*/
 
@@ -78,11 +81,19 @@ public class User {
     }
 
 
-    public AccountEmployee getAccountEmployee() {
-        return accountEmployee;
+    public EmployeeAccount getEmployeeAccount() {
+        return employeeAccount;
     }
 
-    public void setAccountEmployee(AccountEmployee accountEmployee) {
-        this.accountEmployee = accountEmployee;
+    public void setEmployeeAccount(EmployeeAccount employeeAccount) {
+        this.employeeAccount = employeeAccount;
+    }
+
+    public CompanyAccount getCompanyAccount() {
+        return companyAccount;
+    }
+
+    public void setCompanyAccount(CompanyAccount companyAccount) {
+        this.companyAccount = companyAccount;
     }
 }

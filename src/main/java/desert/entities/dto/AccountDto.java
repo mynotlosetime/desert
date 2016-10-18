@@ -1,40 +1,44 @@
 package desert.entities.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import desert.entities.AccountEmployee;
-
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 /**
- * Created by Dim Mesh on 12.10.2016.  21:43
+ * Created by Dim Mesh on 16.10.2016.  16:30
  */
+class TypesOfAccounts {
+    private TypesOfAccounts() { } // Prevents instantiation
+    static final String COMPANY = "Company";
+    static final String EMPLOYEE = "Employee";
+}
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = CompanyAccountDto.class, name = TypesOfAccounts.COMPANY),
+        @JsonSubTypes.Type(value = EmployeeAccountDto.class, name = TypesOfAccounts.EMPLOYEE) })
+public abstract class  AccountDto {
 
-public class AccountDto implements Serializable{
-    private String firstName;
-    private String lastName;
+    long id;
+    private String type;
 
-    public AccountDto(){}
-
-    public AccountDto(AccountEmployee accountEmployee){
-        this.firstName = accountEmployee.getFirstName();
-        this.lastName = accountEmployee.getLastName();
+    public long getId() {
+        return id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getType() {
+        return type;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+
 }

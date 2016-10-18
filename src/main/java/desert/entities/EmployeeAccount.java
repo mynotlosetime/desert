@@ -2,6 +2,7 @@ package desert.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import desert.entities.dto.EmployeeAccountDto;
 
 import javax.persistence.*;
 
@@ -9,14 +10,14 @@ import javax.persistence.*;
  * Created by Dim Mesh on 04.10.2016.  21:00
  */
 @Entity
-@Table(name = "accounts")
-public class AccountEmployee implements Account{
+@Table(name = "employee_accounts")
+public class EmployeeAccount implements Account{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToOne( mappedBy = "profile", fetch = FetchType.LAZY )
+    @OneToOne( mappedBy = "employeeAccount", fetch = FetchType.LAZY )
     private User user;
 
     @Column(name = "first_name")
@@ -25,13 +26,16 @@ public class AccountEmployee implements Account{
     @Column(name = "last_name")
     private String lastName;
 
-    public AccountEmployee(){}
+    public EmployeeAccount(){}
 
-    public AccountEmployee(String firstName, String lastName) {
+    public EmployeeAccount(String firstName, String lastName) {
         this.lastName = lastName;
         this.firstName = firstName;
     }
-
+    public  EmployeeAccount(EmployeeAccountDto dto){
+        this.lastName = dto.getLastName();
+        this.firstName = dto.getFirstName();
+    }
 
 
     public long getId() {

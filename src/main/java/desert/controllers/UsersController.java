@@ -28,8 +28,7 @@ public class UsersController {
     UsersService usersService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<UserDto> getUsers()
-    {
+    public List<UserDto> getUsers() {
         List<UserDto> result = new ArrayList<>();
         usersService.findAll().forEach(user -> {
             result.add(new UserDto(user));
@@ -37,18 +36,11 @@ public class UsersController {
         return result;
     }
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<UserDto> update(@RequestBody UserDto user)
-    {
+    public ResponseEntity<UserDto> update(@RequestBody UserDto user) {
         //no empty fields allowed
         if(user != null){
-            user.getName();
+            usersService.addGuest(user);
         }
         return new ResponseEntity<UserDto>(user, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/add",method = RequestMethod.GET)
-    public ModelAndView getUserForm()
-    {
-        return new ModelAndView("add");
     }
 }

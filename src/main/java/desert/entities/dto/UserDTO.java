@@ -21,8 +21,10 @@ public class UserDto implements Serializable {
     public UserDto(User user){
         this.name = user.getUsername();
         this.password = user.getPassword();
-        if(user.getAccountEmployee() != null){
-            this.account = new AccountDto(user.getAccountEmployee());
+        if(user.getEmployeeAccount() != null){
+            this.account = new EmployeeAccountDto(user.getEmployeeAccount());
+        } else if(user.getCompanyAccount() != null){
+            this.account = new CompanyAccountDto(user.getCompanyAccount());
         }
     }
     public String getPassword() {
