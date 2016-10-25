@@ -30,7 +30,6 @@ public class UsersController {
 
     @RequestMapping(method = RequestMethod.GET)
     public Result<UserDto> getUsers() {
-
         ArrayList<UserDto> result = new ArrayList<>();
         usersService.findAll().forEach(user -> {
             result.add(new UserDto(user));

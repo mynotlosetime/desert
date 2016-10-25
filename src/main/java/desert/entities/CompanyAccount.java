@@ -1,6 +1,7 @@
 package desert.entities;
 
 import desert.entities.dto.CompanyAccountDto;
+import lombok.Data;
 
 import javax.persistence.*;
 
@@ -9,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "company_accounts")
-public class CompanyAccount implements Account{
+public @Data class CompanyAccount implements Account{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,45 +39,5 @@ public class CompanyAccount implements Account{
         this.companyName = dto.getCompanyName();
         this.contactName = dto.getContactName();
         this.numOfEmployee = dto.getNumOfEmployee();
-    }
-
-
-    public long getId() {
-        return id;
-    }
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public String getContactName() {
-        return contactName;
-    }
-
-    public void setContactName(String contactName) {
-        this.contactName = contactName;
-    }
-
-    public Long getNumOfEmployee() {
-        return numOfEmployee;
-    }
-
-    public void setNumOfEmployee(Long numOfEmployee) {
-        this.numOfEmployee = numOfEmployee;
     }
 }

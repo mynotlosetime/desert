@@ -70,6 +70,13 @@ public class UsersServiceImpl implements UsersService {
         }
         return user; // .orElseThrow(() -> new UserNotFoundException(userId)
     }
+    public User getUserByUsername(String username){
+        User user = usersRep.findByUsername(username);
+        if(user == null){
+            throw new UserNotFoundException(username);
+        }
+        return user;
+    }
     public void deleteUserById(long userId){
         try{
             usersRep.delete(userId);

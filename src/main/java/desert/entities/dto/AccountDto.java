@@ -2,6 +2,7 @@ package desert.entities.dto;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.Data;
 
 /**
  * Created by Dim Mesh on 16.10.2016.  16:30
@@ -19,26 +20,9 @@ class TypesOfAccounts {
 @JsonSubTypes({
         @JsonSubTypes.Type(value = CompanyAccountDto.class, name = TypesOfAccounts.COMPANY),
         @JsonSubTypes.Type(value = EmployeeAccountDto.class, name = TypesOfAccounts.EMPLOYEE) })
-public abstract class  AccountDto {
+public @Data abstract class  AccountDto {
 
     long id;
     private String type;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
 
 }

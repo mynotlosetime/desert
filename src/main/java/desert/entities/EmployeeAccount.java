@@ -3,6 +3,7 @@ package desert.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import desert.entities.dto.EmployeeAccountDto;
+import lombok.Data;
 
 import javax.persistence.*;
 
@@ -11,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "employee_accounts")
-public class EmployeeAccount implements Account{
+public @Data class EmployeeAccount implements Account{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,38 +36,5 @@ public class EmployeeAccount implements Account{
     public EmployeeAccount(EmployeeAccountDto dto){
         this.lastName = dto.getLastName();
         this.firstName = dto.getFirstName();
-    }
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 }

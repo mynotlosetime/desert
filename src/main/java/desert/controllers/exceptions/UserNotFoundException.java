@@ -6,6 +6,10 @@ package desert.controllers.exceptions;
 public class UserNotFoundException extends RuntimeException {
 
     public UserNotFoundException(Long userId) {
-        super("user with id " + userId + " not found");
+        super("User with id " + userId + " not found");
+    }
+
+    public UserNotFoundException(String username) {
+        super("User with login" + username + " not found");
     }
 }

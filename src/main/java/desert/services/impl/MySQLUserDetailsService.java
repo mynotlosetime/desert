@@ -6,6 +6,7 @@ package desert.services.impl;
     import desert.entities.User;
     import desert.entities.enums.RoleEnum;
     import desert.entities.repositories.UsersRep;
+    import lombok.Data;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.security.authentication.InternalAuthenticationServiceException;
     import org.springframework.security.core.GrantedAuthority;
@@ -46,7 +47,7 @@ public class MySQLUserDetailsService implements UserDetailsService {
     }
 }
 
-class Role implements GrantedAuthority {
+@Data class Role implements GrantedAuthority {
 
     private String role;
 
@@ -61,15 +62,5 @@ class Role implements GrantedAuthority {
     @Override
     public String getAuthority() {
         return getRole();
-    }
-
-    /*=========== Self methods =================*/
-
-    private String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 }

@@ -2,6 +2,9 @@ package desert.entities.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import desert.entities.EmployeeAccount;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 
@@ -14,8 +17,8 @@ import java.io.Serializable;
 
 public class EmployeeAccountDto extends AccountDto implements Serializable {
 
-    private String firstName;
-    private String lastName;
+    private @Getter @Setter String firstName;
+    private @Getter @Setter String lastName;
 
     public EmployeeAccountDto(){
         setType(TypesOfAccounts.EMPLOYEE);
@@ -28,19 +31,4 @@ public class EmployeeAccountDto extends AccountDto implements Serializable {
         this.lastName = employeeAccount.getLastName();
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 }
