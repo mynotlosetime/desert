@@ -4,7 +4,10 @@ package desert.entities;
  * Created by Dim Mesh on 29.09.2016.  22:03
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import desert.entities.enums.RoleEnum;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 
@@ -18,6 +21,7 @@ public class User {
     @Column(name = "username")
     private String username;
 
+    @JsonIgnore
     @Column(name = "password")
     private String password;
 

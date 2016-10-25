@@ -12,6 +12,7 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 public class UserDto implements Serializable {
+    private Long id;
     private String name;
     private String password;
     private AccountDto account;
@@ -19,8 +20,8 @@ public class UserDto implements Serializable {
     public UserDto(){}
 
     public UserDto(User user){
+        this.id = user.getId();
         this.name = user.getUsername();
-        this.password = user.getPassword();
         if(user.getEmployeeAccount() != null){
             this.account = new EmployeeAccountDto(user.getEmployeeAccount());
         } else if(user.getCompanyAccount() != null){
@@ -50,5 +51,13 @@ public class UserDto implements Serializable {
 
     public void setAccount(AccountDto account) {
         this.account = account;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

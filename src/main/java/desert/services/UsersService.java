@@ -10,5 +10,13 @@ public interface UsersService {
 
     User addGuest(UserDto userDto);
 
-    public Iterable<User> findAll();
+    User addEmptyGuest(UserDto userDto);
+
+    User getUserById(long userId);
+
+    void deleteUserById(long userId);
+
+    Iterable<User> findAll();
+
+
 }

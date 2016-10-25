@@ -32,7 +32,7 @@ public class EmployeeAccount implements Account{
         this.lastName = lastName;
         this.firstName = firstName;
     }
-    public  EmployeeAccount(EmployeeAccountDto dto){
+    public EmployeeAccount(EmployeeAccountDto dto){
         this.lastName = dto.getLastName();
         this.firstName = dto.getFirstName();
     }
