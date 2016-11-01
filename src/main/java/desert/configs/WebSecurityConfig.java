@@ -19,9 +19,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@ComponentScan(basePackages = "desert.services")
+@ComponentScan(basePackages = "desert")
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -32,15 +33,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .formLogin()
                     .loginPage("/login")
-                    .successHandler(new MyAuthenticationSuccessHandler())
+                    .successHandler(new DeAuthenticationSuccessHandler())
                     .failureUrl("/login/failure")
                     .permitAll()
                     .and()
                 .logout()
-                .permitAll();
+                    .logoutSuccessUrl("/login/logout")
+                    .permitAll();
     }
     @Autowired
     private MySQLUserDetailsService mySQLUserDetailsService;
+
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

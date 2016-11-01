@@ -1,15 +1,17 @@
 package desert.controllers;
 
-import desert.controllers.exceptions.WrongLoginException;
+import desert.controllers.exceptions.RestServiceExceptions.RestException;
+import desert.controllers.exceptions.RestServiceExceptions.WrongLoginException;
 import desert.entities.User;
+import desert.entities.dto.ErrorDto;
 import desert.entities.dto.UserDto;
 import desert.entities.enums.Result;
 import desert.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Dim Mesh on 25.10.2016.  18:29
@@ -23,11 +25,12 @@ public class loginController {
     @RequestMapping(value = "/success/{username}", method = RequestMethod.GET)
     Result success(@PathVariable String username) {
         User user = usersService.getUserByUsername(username);
-
         return  new Result<UserDto>(new UserDto(user));
     }
     @RequestMapping(value = "/failure", method = RequestMethod.GET)
-    Result failure() {
-        return  new Result<>(new WrongLoginException());
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    Result failure(HttpServletRequest request) {
+        RestException ex = new WrongLoginException();
+        return  new Result(new ErrorDto(ex, request));
     }
 }

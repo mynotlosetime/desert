@@ -18,7 +18,7 @@ import java.util.Collection;
 /**
  * Created by Dim Mesh on 25.10.2016.  19:56
  */
-public class MyAuthenticationSuccessHandler  implements AuthenticationSuccessHandler {
+public class DeAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     private Log logger = LogFactory.getLog(this.getClass());
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();

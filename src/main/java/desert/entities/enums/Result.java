@@ -15,14 +15,17 @@ public @Data class Result<T> {
     private boolean success;
     private int count;
 
-    public Result(RuntimeException error){
-        this.error = new ErrorDto(error);
+    public Result(){}
+
+    public Result(ErrorDto error){
+        this.error = error;
         this.success = false;
     }
     public Result(T data){
         ArrayList<T> one = new ArrayList<>();
         one.add(data);
         this.data = one;
+        this.success = true;
     }
     public Result( ArrayList<T> data){
         this.data = data;

@@ -1,6 +1,6 @@
 package desert.services.impl;
 
-import desert.controllers.exceptions.UserNotFoundException;
+import desert.controllers.exceptions.RestServiceExceptions.UserNotFoundException;
 import desert.entities.*;
 import desert.entities.dto.AccountDto;
 import desert.entities.dto.CompanyAccountDto;
@@ -13,7 +13,6 @@ import desert.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
