@@ -27,10 +27,15 @@ public class loginController {
         User user = usersService.getUserByUsername(username);
         return  new Result<UserDto>(new UserDto(user));
     }
+
     @RequestMapping(value = "/failure", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     Result failure(HttpServletRequest request) {
         RestException ex = new WrongLoginException();
         return  new Result(new ErrorDto(ex, request));
+    }
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    Result logout(HttpServletRequest request) {
+        return  new Result();
     }
 }

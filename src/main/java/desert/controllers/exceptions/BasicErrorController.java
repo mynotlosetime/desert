@@ -1,6 +1,5 @@
 package desert.controllers.exceptions;
 
-import com.sun.deploy.net.HttpResponse;
 import desert.entities.dto.ErrorDto;
 import desert.entities.enums.Result;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;

@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping(value = "/users")
-@PreAuthorize("hasRole('ROLE_ADMIN')")
 
 public class UsersController {
 

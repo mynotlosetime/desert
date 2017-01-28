@@ -1,0 +1,15 @@
+= RESTful Notes API Guide
+Andy Wilkinson;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+[[resources]]
+= Resources
+
+[[resources-index]]
+== Index
+

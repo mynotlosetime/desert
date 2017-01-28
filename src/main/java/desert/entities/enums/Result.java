@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public @Data class Result<T> {
     private ArrayList<T> data;
     private ErrorDto error;
-    private boolean success;
+    private boolean success = true;
     private int count;
 
     public Result(){}
@@ -25,11 +25,9 @@ public @Data class Result<T> {
         ArrayList<T> one = new ArrayList<>();
         one.add(data);
         this.data = one;
-        this.success = true;
     }
     public Result( ArrayList<T> data){
         this.data = data;
-        this.success = true;
     }
     public int getCount() {
         if(data != null) {
