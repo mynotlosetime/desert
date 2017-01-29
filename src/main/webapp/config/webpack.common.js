@@ -8,6 +8,7 @@ var helpers = require('./helpers');
 
 module.exports = {
     entry: {
+        'vendor': './src/vendor.ts',
         'main':  './src/main.ts'
     },
 
@@ -32,9 +33,10 @@ module.exports = {
             },
             {
                 test: /\.sass/,
+
                 loader: ExtractTextPlugin.extract({
                     fallbackLoader: 'style-loader',
-                    loader: 'css-loader!sass-loader?sourceMap'
+                    loader: 'css-loader?sourceMap!sass-loader?sourceMap'
                 })
             },
             {
@@ -55,7 +57,7 @@ module.exports = {
         ),
 
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['main']
+            name: ['main','vendor']
         }),
 
         new HtmlWebpackPlugin({
